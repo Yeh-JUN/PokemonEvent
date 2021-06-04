@@ -12,17 +12,39 @@
     </head>
     <body>
 
-        <div class="jumbotron">
+        <div class="jumbotron text-center">
             <h1>寶可夢圖鑑列表</h1>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <button class="btn-primary" onclick='fetchPokemon()'>
+                        載入Pokemon圖鑑列表  HTML attribute屬性
+                    </button>
+                </div>
+                <div class="col-12 col-md-3">
+                    <button class="btn-danger"  id="OnClick">
+                        載入Pokemon圖鑑列表 JS指定HTML元素attribute屬性
+                    </button>
+                </div>
+                <div class="col-12 col-md-3">
+                    <button class="btn-warning" id="addEvent">
+                        載入Pokemon圖鑑列表⽤ addEventListener⽅法註冊
+                    </button>
+                </div>
+                <!-- <div class="col-12 col-md-3">
+                    <button class="btn-danger" onclick='fetchPokemon_appendChild()'>
+                        載入Pokemon圖鑑列表appendChild()
+                    </button>
+                </div> -->
+                <div class="col-12 col-md-3">
+                    <button class="btn-success " id="reset">重置</button>
+                </div>
+            </div>
+        </div>
         
-        <button class="btn-primary" onclick='fetchPokemon()'>載入寶可夢圖鑑列表 HTML attribute屬性Pokemon</button>
-        <button class="btn-danger"  id="OnClick">載入寶可夢圖鑑列表 JS指定HTML元素attribute屬性Pokemon</button>
-        <!-- <button class="btn-danger" onclick='fetchPokemon_appendChild()'>載入寶可夢圖鑑列表appendChild()</button> -->
-        <button class="btn-warning" id="addEvent">載入寶可夢圖鑑列表⽤ addEventListener⽅法註冊Pokemon</button>
-        <button class="btn-success" id="reset">重置</button>
 
-        <div id='container'></div>
+        <div id="container" class="text-center"></div>
 
         <script 
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"  
@@ -37,9 +59,13 @@
             integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
         </script>
 
+
         <!-- 自訂 -->
         <script>
             let container = document.getElementById('container');
+            
+            // window.onload = setPokemon() , appendPokemon();
+
             // 利用HTML方法Element.innerHTML設定HTML字串
             function setPokemon(){
                 // https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png
@@ -57,6 +83,7 @@
                 container.appendChild(img);
             }
 
+
             // 事件綁定
             function fetchPokemon(){
                 
@@ -71,7 +98,32 @@
                 }
                 container.innerHTML = pokemons;
             }
-            
+
+
+
+
+
+            fetchPokemon_appendChild
+            function fetchPokemon_appendChild()
+            {
+                container.removeChild(container.childNodes[0]);
+                for(let i = 1; i <= 898 ; i++)
+                {
+                    let fileName = i.toString().padStart(3,'0');
+                    let pathFile = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${fileName}.png`;
+                    // let pokemonImg = `<img src="${pathFile}">`;
+                    let img = document.createElement('img');
+                    img.setAttribute('src' , pathFile);
+
+                    container.appendChild(img);
+                } 
+            }
+
+
+
+
+
+
             //onClick 
             let onClickFunc = document.getElementById('OnClick');
             onClickFunc.onclick = function(){
