@@ -101,10 +101,7 @@
                 container.innerHTML = pokemons;
             }
 
-
-
-
-
+            //appendChild
             fetchPokemon_appendChild
             function fetchPokemon_appendChild()
             {
@@ -148,8 +145,7 @@
 
             // AddEvent
             let addEvent = document.getElementById('addEvent');
-            addEvent.addEventListener('click' , addImg);
-            function addImg(){
+            let addImg = () =>{
                 while(container.firstChild){
                     container.removeChild(container.firstChild);
                 }
@@ -164,15 +160,18 @@
                     container.appendChild(img);
                 }
             }
+            addEvent.addEventListener('click' , addImg);
+
+
 
             // Reset
-            reset.addEventListener("click" , resetImg);
-            function resetImg(){
+            let resetImg = () =>{
                 let reset = document.getElementById('reset');
                 while(container.firstChild){
                     container.removeChild(container.firstChild);
                 }
             }
+            reset.addEventListener("click" , resetImg);
         </script>
     </body>
 </html>
